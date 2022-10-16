@@ -1,0 +1,10 @@
+predicates:
+    HasLabel/2: closed
+    CoRef/2: open
+
+observations:
+    HasLabel: ../data/collective-graph-identification/enron/low_unknown/00/eval/HasLabel.txt
+
+targets:
+
+truth:

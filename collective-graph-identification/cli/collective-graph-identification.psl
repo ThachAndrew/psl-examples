@@ -1,0 +1,5 @@
+// Node Labeling -> Entity Resolution
+HasLabel(A1, L) & HasLabel(A2, L) -> CoRef(A1, A2)
+
+// Link Prediction -> Entity Resolution
+Manages(A1, A3) & Manages(A2, A3) -> CoRef(A1, A2)
