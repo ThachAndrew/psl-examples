@@ -3,8 +3,12 @@ predicates:
     CoRef/2: open
 
 observations:
-    HasLabel: ../data/collective-graph-identification/enron/low_unknown/00/eval/HasLabel.txt
+    HasLabel: ../data/collective-graph-identification/enron/00/eval/HasLabel_obs.txt
+    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_obs.txt
+    
 
 targets:
+    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_targets.txt
 
 truth:
+    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_truth.txt
