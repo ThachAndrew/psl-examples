@@ -4,11 +4,11 @@ predicates:
 
 observations:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_obs.txt
-    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_obs.txt
+    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_neg_truth.txt
     
 
 targets:
-    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_targets.txt
+    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_pos_targets.txt
 
 truth:
-    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_truth.txt
+    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_pos_truth.txt
