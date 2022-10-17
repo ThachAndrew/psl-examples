@@ -1,8 +1,8 @@
 // Node Labeling -> Entity Resolution
-1.0: HasLabel(E1, L) & HasLabel(E2, L) -> CoRef(E1, E2)
+1.0: EmailHasLabel(E1, L) & EmailHasLabel(E2, L) -> CoRef(E1, E2)
 
 // Link Prediction -> Entity Resolution
 // 1.0: Manages(E1, E3) & Manages(E2, E3) -> CoRef(E1, E2)
 
 // Entity Resolution
-// 1.0: HasAddress(P1, E1) & CoRef(E1, E2) -> HasAddress(P1, E2)
+// 1.0: PersonHasAddress(P1, E1) & CoRef(E1, E2) -> PersonHasAddress(P1, E2)

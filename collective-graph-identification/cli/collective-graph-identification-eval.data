@@ -1,9 +1,9 @@
 predicates:
-    HasLabel/2: closed
+    EmailHasLabel/2: closed
     CoRef/2: open
 
 observations:
-    HasLabel: ../data/collective-graph-identification/enron/00/eval/HasLabel_obs.txt
+    EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_obs.txt
     CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_obs.txt
     
 
