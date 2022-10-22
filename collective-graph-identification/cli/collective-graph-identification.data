@@ -1,14 +1,11 @@
 predicates:
-    EmailHasLabel/2: closed
-    CoRef/2: open
+    EmailHasLabel/2: open
 
 observations:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_obs.txt
-    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_neg_truth.txt
-    
 
 targets:
-    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_pos_targets.txt
+    EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_targets.txt
 
 truth:
-    CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_pos_truth.txt
+    EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_truth.txt
