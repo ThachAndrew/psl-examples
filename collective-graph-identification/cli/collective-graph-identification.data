@@ -1,15 +1,19 @@
 predicates:
     EmailHasLabel/2: open
     CoRef/2: open
+    Manages/2: open
 
 observations:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_obs.txt
     CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_obs.txt
+    Manages: ../data/collective-graph-identification/enron/00/eval/Manages_obs.txt
 
 targets:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_targets.txt
     CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_targets.txt
+    Manages: ../data/collective-graph-identification/enron/00/eval/Manages_targets.txt
 
 truth:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_truth.txt
     CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_truth.txt
+    Manages: ../data/collective-graph-identification/enron/00/eval/Manages_truth.txt
