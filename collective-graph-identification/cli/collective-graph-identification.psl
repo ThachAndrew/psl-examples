@@ -6,6 +6,8 @@
 // Functional Constraint
 EmailHasLabel(E, +L) = 1.0 .
 
+// Local Classifiers
+1.0: LocalEmailHasLabel(E, L) = EmailHasLabel(E, L) ^2
 
 // Node Labeling -> Entity Resolution
 // Note: This requires that the CoRef edges are "unblocked." So the original data for CoRefs have been filled.
