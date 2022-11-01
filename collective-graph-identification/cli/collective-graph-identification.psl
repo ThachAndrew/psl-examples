@@ -10,11 +10,10 @@ EmailHasLabel(E, +L) = 1.0 .
 1.0: LocalEmailHasLabel(E, L) = EmailHasLabel(E, L) ^2
 
 // Node Labeling -> Entity Resolution
-// Note: This requires that the CoRef edges are "unblocked." So the original data for CoRefs have been filled.
 1.0: EmailHasLabel(E1, L) & EmailHasLabel(E2, L) & (E1 != E2) -> CoRef(E1, E2) ^2
 
 // Link Prediction -> Entity Resolution
-// 1.0: Manages(E1, E3) & Manages(E2, E3) -> CoRef(E1, E2) ^2
+1.0: Manages(E1, E3) & Manages(E2, E3) & (E1 != E2) & (E1 != E3) -> CoRef(E1, E2) ^2
 
 // Entity Resolution
 // FIXME: This rule is cheating, because the predicate "PersonHasAddress" is only present in the ground truth.
