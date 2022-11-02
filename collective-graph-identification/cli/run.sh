@@ -14,6 +14,7 @@ readonly BASE_NAME='collective-graph-identification'
 readonly OUTPUT_DIRECTORY="${THIS_DIR}/inferred-predicates"
 
 readonly ADDITIONAL_PSL_OPTIONS='--infer --eval DiscreteEvaluator'
+readonly ADDITIONAL_EVAL_OPTIONS='--infer --eval CategoricalEvaluator -D categoricalevaluatorindexes=1 -D eval.includeobs=true'
 
 function main() {
     trap exit SIGINT
@@ -35,7 +36,7 @@ function run_inference() {
         --model "${THIS_DIR}/${BASE_NAME}.psl" \
         --data "${THIS_DIR}/${BASE_NAME}.data" \
         --output "${OUTPUT_DIRECTORY}" \
-        ${ADDITIONAL_PSL_OPTIONS} "$@"
+        ${ADDITIONAL_PSL_OPTIONS} ${ADDITIONAL_EVAL_OPTIONS} "$@"
 
     if [[ "$?" -ne 0 ]]; then
         echo 'ERROR: Failed to run infernce.'
