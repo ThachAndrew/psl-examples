@@ -3,12 +3,14 @@ predicates:
     CoRef/2: open
     Manages/2: open
     LocalEmailHasLabel/2: closed
+    LocalManages/2: closed
 
 observations:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_obs.txt
     CoRef: ../data/collective-graph-identification/enron/00/eval/CoRef_obs.txt
     Manages: ../data/collective-graph-identification/enron/00/eval/Manages_obs.txt
     LocalEmailHasLabel: ../data/collective-graph-identification/enron/00/eval/Local_EmailHasLabel_obs.txt
+    LocalManages: ../data/collective-graph-identification/enron/00/eval/Local_Manages_obs.txt
 
 targets:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_targets.txt

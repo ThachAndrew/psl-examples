@@ -11,6 +11,7 @@ EmailHasLabel(E, +L) = 1.0 .
 // Local Classifiers//
 //////////////////////
 1.0: LocalEmailHasLabel(E, L) = EmailHasLabel(E, L) ^2
+1.0: LocalManages(E, L) = Manages(E, L) ^2
 
 
 //////////////////////
