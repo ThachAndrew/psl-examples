@@ -4,6 +4,8 @@ predicates:
     Manages/2: open
     LocalEmailHasLabel/2: closed
     LocalManages/2: closed
+    SimJaccardBow/2: closed
+    SimCosineBow/2: closed
 
 observations:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_obs.txt
@@ -11,6 +13,8 @@ observations:
     Manages: ../data/collective-graph-identification/enron/00/eval/Manages_obs.txt
     LocalEmailHasLabel: ../data/collective-graph-identification/enron/00/eval/Local_EmailHasLabel_obs.txt
     LocalManages: ../data/collective-graph-identification/enron/00/eval/Local_Manages_obs.txt
+    SimJaccardBow: ../data/collective-graph-identification/enron/00/eval/Sim_Jaccard_BOW.txt
+    SimCosineBow: ../data/collective-graph-identification/enron/00/eval/Sim_Cosine_BOW.txt
 
 targets:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_targets.txt
