@@ -12,6 +12,7 @@ EmailHasLabel(E, +L) = 1.0 .
 //////////////////////
 1.0: LocalEmailHasLabel(E, L) = EmailHasLabel(E, L) ^2
 1.0: LocalManages(E, L) = Manages(E, L) ^2
+1.0: LocalCoRef(E, L) = CoRef(E, L) ^2
 
 
 //////////////////////
@@ -20,7 +21,7 @@ EmailHasLabel(E, +L) = 1.0 .
 
 // Bag of words similarity -> Entity Resolution
 // 1.0: SimJaccardBow(E1, E2) -> CoRef(E1, E2) ^2
-1.0: SimCosineBow(E1, E2) -> CoRef(E1, E2) ^2
+// 1.0: SimCosineBow(E1, E2) -> CoRef(E1, E2) ^2
 
 // Bag of words similarity -> Node Labeling
 // 1.0: SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) & (E1 != E2) -> EmailHasLabel(E2, L) ^2
