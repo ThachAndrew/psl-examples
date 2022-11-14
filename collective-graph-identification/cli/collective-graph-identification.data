@@ -7,6 +7,7 @@ predicates:
     LocalCoRef/2: closed
     SimJaccardBow/2: closed
     SimCosineBow/2: closed
+    SimJaccardNetwork/2: closed
 
 observations:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_obs.txt
@@ -17,6 +18,7 @@ observations:
     LocalCoRef: ../data/collective-graph-identification/enron/00/eval/Local_CoRef_obs.txt
     SimJaccardBow: ../data/collective-graph-identification/enron/00/eval/Sim_Jaccard_BOW.txt
     SimCosineBow: ../data/collective-graph-identification/enron/00/eval/Sim_Cosine_BOW.txt
+    SimJaccardNetwork: ../data/collective-graph-identification/enron/00/eval/Sim_Jaccard_Network.txt
 
 targets:
     EmailHasLabel: ../data/collective-graph-identification/enron/00/eval/EmailHasLabel_targets.txt
