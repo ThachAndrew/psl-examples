@@ -31,7 +31,19 @@ function main() {
     local outDir="results/experiment::${experiment}"
     local extraOptions="-D runtime.log.level=DEBUG"
 
-    run_psl "$outDir" "$extraOptions"
+    # run_psl "$outDir" "$extraOptions"
+
+    for i in $(seq -w 00 02)
+    do
+      echo "Inferring Fold $i"
+      sed -ri "s|([0-9]+)(/\w+)|${i}\2|" cli/collective-graph-identification*.data
+
+      outDir="results/experiment::${experiment}/fold::${i}"
+
+      run_psl "$outDir" "$extraOptions"
+
+    done
+
 }
 
 [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
