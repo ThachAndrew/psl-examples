@@ -33,7 +33,7 @@ function main() {
 
     # run_psl "$outDir" "$extraOptions"
 
-    for i in $(seq -w 00 03)
+    for i in $(seq -w 00 04)
     do
       echo "Inferring Fold $i"
       sed -ri "s|([0-9]+)(/\w+)|${i}\2|" cli/collective-graph-identification*.data
