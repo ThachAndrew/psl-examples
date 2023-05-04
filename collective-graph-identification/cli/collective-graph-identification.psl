@@ -35,11 +35,12 @@ EmailHasLabel(E, +L) = 1.0 .
 // 1.0: EmailScope(E2) & EmailHasLabel(E1, '4') & EmailHasLabel(E2, '4') -> !Manages(E1, E2) ^2
 
 // This rule produces the same results as the above. 
-1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (L1 == L2) -> !Manages(E1, E2) ^2
+// 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (L1 == L2) -> !Manages(E1, E2) ^2
 
 // FIXME: This hurts the scores for the CoRef task (Entity Resolution).
 // 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (L1 == L2) & (E1 != E2)-> CoRef(E1, E2) ^2
 
+1.0: Manages(E1, E2) -> !CoRef(E1, E2) ^2
 
 
 
