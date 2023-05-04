@@ -15,14 +15,55 @@ EmailHasLabel(E, +L) = 1.0 .
 1.0: LocalCoRef(E, L) = CoRef(E, L) ^2
 
 
+//////////////////
+// Similarities //
+//////////////////
+
+1.0: SimJaccardBow(E1, E2) -> CoRef(E1, E2) ^2
+1.0: SimJaccardNetwork(E1, E2) -> CoRef(E1, E2) ^2
+
+
 //////////////////////
 // Relational Model //
 //////////////////////
 
-// Bag of words similarity -> Entity Resolution
-// 1.0: SimJaccardBow(E1, E2) -> CoRef(E1, E2) ^2
-// 1.0: SimCosineBow(E1, E2) -> CoRef(E1, E2) ^2
-// 1.0: SimJaccardNetwork(E1, E2) -> CoRef(E1, E2) ^2
+// People with the same title don't manage each other.
+// 1.0: EmailScope(E2) & EmailHasLabel(E1, '0') & EmailHasLabel(E2, '0') -> !Manages(E1, E2) ^2
+// 1.0: EmailScope(E2) & EmailHasLabel(E1, '1') & EmailHasLabel(E2, '1') -> !Manages(E1, E2) ^2
+// 1.0: EmailScope(E2) & EmailHasLabel(E1, '2') & EmailHasLabel(E2, '2') -> !Manages(E1, E2) ^2
+// 1.0: EmailScope(E2) & EmailHasLabel(E1, '3') & EmailHasLabel(E2, '3') -> !Manages(E1, E2) ^2
+// 1.0: EmailScope(E2) & EmailHasLabel(E1, '4') & EmailHasLabel(E2, '4') -> !Manages(E1, E2) ^2
+
+// This rule produces the same results as the above. 
+1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (L1 == L2) -> !Manages(E1, E2) ^2
+
+// FIXME: This hurts the scores for the CoRef task (Entity Resolution).
+// 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (L1 == L2) & (E1 != E2)-> CoRef(E1, E2) ^2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// These attempted rules only makes the model worse.
 
 // Bag of words similarity -> Node Labeling
 // 0.1: SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) & (E1 != E2) -> EmailHasLabel(E2, L) ^2
