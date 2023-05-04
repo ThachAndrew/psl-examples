@@ -37,8 +37,14 @@ EmailHasLabel(E, +L) = 1.0 .
 // This rule produces the same results as the above. 
 // 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (L1 == L2) -> !Manages(E1, E2) ^2
 
-// FIXME: This hurts the scores for the CoRef task (Entity Resolution).
-// 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (L1 == L2) & (E1 != E2)-> CoRef(E1, E2) ^2
+// TODO: Consider L1 == L2
+1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (E1 != E2) & SimEmail(E1, E2) -> CoRef(E1, E2) ^2
+
+1.0: CoRef(E1, E2) & CoRef(E2, E3) & (E1 != E2) & (E2 != E3) & (E1 != E3) -> CoRef(E1, E3) ^2
+1.0: CoRef(E1, E2) & !CoRef(E2, E3) & (E1 != E2) & (E2 != E3) & (E1 != E3) -> !CoRef(E1, E3) ^2
+
+// FIXME: This one probably lowered Node Labeling
+0.1: CoRef(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
 
 1.0: Manages(E1, E2) -> !CoRef(E1, E2) ^2
 
