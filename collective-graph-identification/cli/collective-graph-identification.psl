@@ -10,38 +10,32 @@ EmailHasLabel(E, +L) = 1.0 .
 //////////////////////
 // Local Classifiers//
 //////////////////////
-1.0: LocalEmailHasLabel(E, L) = EmailHasLabel(E, L) ^2
+// 1.0: LocalEmailHasLabel(E, L) = EmailHasLabel(E, L) ^2
 1.0: LocalManages(E, L) = Manages(E, L) ^2
-1.0: LocalCoRef(E, L) = CoRef(E, L) ^2
+// 0.1: LocalCoRef(E, L) = CoRef(E, L) ^2
 
 
 //////////////////
 // Similarities //
 //////////////////
 
-1.0: SimJaccardBow(E1, E2) -> CoRef(E1, E2) ^2
-1.0: SimJaccardNetwork(E1, E2) -> CoRef(E1, E2) ^2
+// These are no longer needed since the relational model overpowers the Entity Resolution.
+// 1.0: SimJaccardBow(E1, E2) -> CoRef(E1, E2) ^2
+// 1.0: SimJaccardNetwork(E1, E2) -> CoRef(E1, E2) ^2
 
 
 //////////////////////
 // Relational Model //
 //////////////////////
 
-// People with the same title don't manage each other.
-
-// This rule produces the same results as the above. 
-// 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (L1 == L2) -> !Manages(E1, E2) ^2
-
-// TODO: Consider L1 == L2
-// 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (E1 != E2) & SimEmail(E1, E2) & (L1 == L2) -> CoRef(E1, E2) ^2
-// 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (E1 != E2) & SimEmail(E1, E2) -> CoRef(E1, E2) ^2
+// Node Labeling and Similar Emails (Threshold=3) -> Entity Resolution
+1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (E1 != E2) & SimEmail(E1, E2) -> CoRef(E1, E2) ^2
 
 // Entity Resolution Transitivity.
-1.0: CoRef(E1, E2) & CoRef(E2, E3) & (E1 != E2) & (E2 != E3) & (E1 != E3) -> CoRef(E1, E3) ^2
 1.0: CoRef(E1, E2) & !CoRef(E2, E3) & (E1 != E2) & (E2 != E3) & (E1 != E3) -> !CoRef(E1, E3) ^2
 
-// FIXME: This rule increases entity resolution by 5%, but decreases node labeling by 5%.
-// 0.1: CoRef(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
+// Couples Entity Resolution and Node Labeling.
+0.5: CoRef(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
 
 1.0: Manages(E1, E2) -> !CoRef(E1, E2) ^2
 
@@ -73,13 +67,20 @@ EmailHasLabel(E, +L) = 1.0 .
 // 0.1: SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) & (E1 != E2) -> EmailHasLabel(E2, L) ^2
 // 0.1: SimCosineBow(E1, E2) & EmailHasLabel(E1, L) & (E1 != E2) -> EmailHasLabel(E2, L) ^2
 
-
-
 // Node Labeling -> Entity Resolution
 // 1.0: EmailHasLabel(E1, L) & EmailHasLabel(E2, L) & (E1 != E2) -> CoRef(E1, E2) ^2
 
 // Link Prediction -> Entity Resolution
 // 1.0: Manages(E1, E3) & Manages(E2, E3) & (E1 != E2) & (E2 != E3) -> CoRef(E1, E2) ^2
+
+// People with the same title don't manage each other.
+// 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (L1 == L2) -> !Manages(E1, E2) ^2
+
+// Node Labeling and Entity Resolution Linkage
+// 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (E1 != E2) & SimEmail(E1, E2) & (L1 == L2) -> CoRef(E1, E2) ^2
+
+// Positive ER Transitivity.
+// 1.0: CoRef(E1, E2) & CoRef(E2, E3) & (E1 != E2) & (E2 != E3) & (E1 != E3) -> CoRef(E1, E3) ^2
 
 // Entity Resolution
 // FIXME: This rule is cheating, because the predicate "PersonHasAddress" is only present in the ground truth.
