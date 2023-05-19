@@ -8,7 +8,7 @@ predicates:
     SimJaccardBow/2: closed
     SimCosineBow/2: closed
     SimJaccardNetwork/2: closed
-    SimEmail/2: closed
+    SimEmailAddress/2: closed
     EmailScope/1: closed
 
 observations:
@@ -21,7 +21,7 @@ observations:
     SimJaccardBow: ../data/collective-graph-identification/enron/00/eval/Sim_Jaccard_BOW.txt
     SimCosineBow: ../data/collective-graph-identification/enron/00/eval/Sim_Cosine_BOW.txt
     SimJaccardNetwork: ../data/collective-graph-identification/enron/00/eval/Sim_Jaccard_Network.txt
-    SimEmail: ../data/collective-graph-identification/enron/00/eval/Sim_Email_thresh_3.txt
+    SimEmailAddress: ../data/collective-graph-identification/enron/00/eval/Sim_Email_thresh_3.txt
     EmailScope: ../data/collective-graph-identification/enron/00/eval/EmailScope.txt
 
 targets:
