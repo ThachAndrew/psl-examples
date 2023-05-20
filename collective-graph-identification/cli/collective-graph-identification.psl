@@ -16,10 +16,6 @@
 0.1: !EmailHasLabel(E, L) ^2
 EmailHasLabel(E, +L) = 1.0 .
 1.0: LocalEmailHasLabel(E, L) = EmailHasLabel(E, L) ^2
-1.0: !SimCosineBow(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E1, L) ^2
-1.0: SimCosineBow(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E1, L) ^2
-1.0: !SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E2, L) ^2
-1.0: SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
 
 
 // Link Prediction
@@ -43,25 +39,44 @@ EmailHasLabel(E, +L) = 1.0 .
 
 // Node Labeling
 // --------------------
-1.0: SimNumberReceievedEmails(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
-1.0: !SimNumberReceievedEmails(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E2, L) ^2
-1.0: EmailHasLabel(E1, L) & Communicates(E1, E2) -> !EmailHasLabel(E2, L)
+// 1.0: SimNumberReceievedEmails(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
+// 1.0: !SimNumberReceievedEmails(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E2, L) ^2
+
+1.0: EmailHasLabel(E1, L) & Communicates(E1, E2) -> !EmailHasLabel(E2, L) ^2
+1.0: EmailHasLabel(E1, L) & Communicates(E1, E2) -> EmailHasLabel(E2, L) ^2
+
+1.0: !SimCosineBow(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E2, L) ^2
+1.0: SimCosineBow(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
+
+1.0: !SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E2, L) ^2
+1.0: SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
+
+// Link Prediction
+// --------------------
+
+// Transitivity: Relies on direction
+// 1.0: Manages(E1, E2) & Manages(E2, E3) -> Manages(E1, E3) ^2
+// 1.0: Manages(E1, E2) & Manages(E1, E3) -> !Manages(E2, E3) ^2
+
+
 
 
 //////////////////////
 // Inter Relational //
 //////////////////////
 
-// Node Labeling and Similar Emails (Threshold=3) -> Entity Resolution
-// 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (E1 != E2) & SimEmail(E1, E2) -> CoRef(E1, E2) ^2
 
 // Couples Entity Resolution and Node Labeling.
-// 0.5: CoRef(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
+// 1.0: CoRef(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
 
+// TODO: Consider converting to hard constraint: 
+// Manages(E1, E2) -> !CoRef(E1, E2) .
 // 1.0: Manages(E1, E2) -> !CoRef(E1, E2) ^2
 
-// Node Labeling and Entity Resolution Linkage
-// 1.0: EmailHasLabel(E1, L1) & EmailHasLabel(E2, L2) & (E1 != E2) & SimEmail(E1, E2) & (L1 == L2) -> CoRef(E1, E2) ^2
+
+// Node Labeling and Similar Emails (Threshold=3) -> Entity Resolution
+// 1.0: EmailHasLabel(E1, L) & EmailHasLabel(E2, L) & (E1 != E2) & SimEmailAddress(E1, E2) -> CoRef(E1, E2) ^2
+// 1.0: Manages(E1, E2) & Manages(E1, E3) & SimEmailAddress(E2, E3) -> CoRef(E2, E3) ^2
 
 
 
