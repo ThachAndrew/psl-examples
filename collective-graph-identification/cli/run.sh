@@ -13,8 +13,8 @@ readonly RUN_SCRIPT_VERSION='1.3.6'
 readonly BASE_NAME='collective-graph-identification'
 readonly OUTPUT_DIRECTORY="${THIS_DIR}/inferred-predicates"
 
-readonly ADDITIONAL_PSL_OPTIONS='--infer --eval DiscreteEvaluator'
-readonly ADDITIONAL_WL_OPTIONS='--learn ContinuousRandomGridSearch search.dirichletalpha=1.0'
+readonly ADDITIONAL_PSL_OPTIONS='--int-ids --postgres --infer --eval DiscreteEvaluator -D log4j.threshold=DEBUG'
+readonly ADDITIONAL_WL_OPTIONS='--learn ContinuousRandomGridSearch search.dirichletalpha=1.0 -D weightlearning.evaluator=DiscreteEvaluator'
 readonly ADDITIONAL_EVAL_OPTIONS='--infer --eval CategoricalEvaluator -D categoricalevaluatorindexes=1 -D eval.includeobs=true'
 
 function main() {
@@ -27,7 +27,7 @@ function main() {
     fetch_psl
 
     # Run PSL.
-    run_weight_learning "$@"
+    # run_weight_learning "$@"
     run_inference "$@"
 }
 
