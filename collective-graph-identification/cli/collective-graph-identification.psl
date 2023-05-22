@@ -42,14 +42,14 @@ EmailHasLabel(E, +L) = 1.0 .
 // 1.0: SimNumberReceievedEmails(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
 // 1.0: !SimNumberReceievedEmails(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E2, L) ^2
 
-1.0: EmailHasLabel(E1, L) & Communicates(E1, E2) -> !EmailHasLabel(E2, L) ^2
-1.0: EmailHasLabel(E1, L) & Communicates(E1, E2) -> EmailHasLabel(E2, L) ^2
-
-1.0: !SimCosineBow(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E2, L) ^2
-1.0: SimCosineBow(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
-
-1.0: !SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E2, L) ^2
-1.0: SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
+// 1.0: EmailHasLabel(E1, L) & Communicates(E1, E2) -> !EmailHasLabel(E2, L) ^2
+// 1.0: EmailHasLabel(E1, L) & Communicates(E1, E2) -> EmailHasLabel(E2, L) ^2
+//
+// 1.0: !SimCosineBow(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E2, L) ^2
+// 1.0: SimCosineBow(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
+//
+// 1.0: !SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) -> !EmailHasLabel(E2, L) ^2
+// 1.0: SimJaccardBow(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2
 
 // Link Prediction
 // --------------------
