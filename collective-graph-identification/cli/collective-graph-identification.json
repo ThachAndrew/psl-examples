@@ -4,6 +4,7 @@
     "runtime.log.level": "DEBUG",
     "runtime.learn": true,
     "runtime.learn.method": "ContinuousRandomGridSearch",
+    "runtime.learn.output.model.path": "collective-graph-identification-learned-eval-patch.psl",
     "search.dirichletalpha": 1.0,
     "continuousrandomgridsearch.maxlocations": 250,
   },
