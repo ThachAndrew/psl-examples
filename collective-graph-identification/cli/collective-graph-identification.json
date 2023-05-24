@@ -5,7 +5,7 @@
     "runtime.learn": true,
     "runtime.learn.method": "ContinuousRandomGridSearch",
     "search.dirichletalpha": 1.0,
-    "continuousrandomgridsearch.maxlocations": 25,
+    "continuousrandomgridsearch.maxlocations": 250,
   },
   "rules": [
     # Local
@@ -27,7 +27,6 @@
     "1.0: LocalManages(E, L) = Manages(E, L) ^2",
     "1.0: SimCosineBow(E1, E2) -> !Manages(E1, E2) ^2",
     "1.0: SimJaccardBow(E1, E2) -> !Manages(E1, E2) ^2",
-    "1.0: Communicates(E1, E2) -> Manages(E1, E2) ^2",
     "0.1: !Manages(E1, E2) ^2",
 
     # Intra
