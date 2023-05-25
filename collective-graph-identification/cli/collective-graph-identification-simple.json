@@ -6,7 +6,7 @@
   },
   "learn": {
     "options": {
-      "admmreasoner.maxiterations": 25000
+      "admmreasoner.maxiterations": 150
     }
   },
   "options": {
@@ -14,8 +14,9 @@
     "runtime.log.level": "DEBUG",
     "runtime.learn": true,
     "runtime.learn.method": "ContinuousRandomGridSearch",
+    "runtime.learn.output.model.path": "collective-graph-identification-learned.psl",
     "search.dirichletalpha": 1.0,
-    "continuousrandomgridsearch.maxlocations": 1500,
+    "continuousrandomgridsearch.maxlocations": 1000,
   },
   "rules": [
     # Local
@@ -43,18 +44,18 @@
 
   # Node Labeling
   "1.0: EmailHasLabel(E1, L) & SimEmailAddress(E1, E2) -> EmailHasLabel(E2, L) ^2",
-  "1.0: EmailHasLabel(E1, L) & Communicates(E1, E2) -> EmailHasLabel(E2, L) ^2",
 
   # Link Prediction
   "1.0: Manages(E1, E2) & Manages(E1, E3) & (E1 != E2) & (E2 != E3) & (E1 != E3) -> !Manages(E2, E3) ^2",
 
   # Inter
   # ======================
-
-  "1.0: CoRef(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) ^2",
-  "1.0: CoRef(E1, E2) -> !Manages(E1, E2) ^2",
-  "1.0: Communicates(E1, E2) & EmailHasLabel(E1, L) & !EmailHasLabel(E2, L) & (E1 != E2) -> Manages(E1, E2) ^2",
-  "1.0: Manages(E1, E2) & EmailHasLabel(E1, L) & (E1 != E2) -> !EmailHasLabel(E2, L) ^2",
+  "CoRef(E1, E2) -> !Manages(E1, E2) .",
+  "CoRef(E1, E2) & EmailHasLabel(E1, L) -> EmailHasLabel(E2, L) .",
+  "Manages(E1, E2) & EmailHasLabel(E1, '0') & (E1 != E2) -> !EmailHasLabel(E2, '0') .",
+  "Manages(E1, E2) & EmailHasLabel(E1, '1') & (E1 != E2) -> !EmailHasLabel(E2, '1') .",
+  "Manages(E1, E2) & EmailHasLabel(E1, '2') & (E1 != E2) -> !EmailHasLabel(E2, '2') .",
+  "Manages(E1, E2) & EmailHasLabel(E1, '3') & (E1 != E2) -> !EmailHasLabel(E2, '3') .",
   ],
   "predicates": {
     "EmailHasLabel/2": {
