@@ -6,7 +6,7 @@
   },
   "learn": {
     "options": {
-      "admmreasoner.maxiterations": 150
+      "admmreasoner.maxiterations": 25000
     }
   },
   "options": {
@@ -21,15 +21,16 @@
   "rules": [
     # Local
   # ======================
-
-  # Entity Resolution
-  "1.0: LocalCoRef(E1, E2) = CoRef(E1, E2) ^2",
-  "0.1: !CoRef(E1, E2) ^2",
-
   # Node Labeling
   "1.0: LocalEmailHasLabel(E, L) = EmailHasLabel(E, L) ^2",
   "0.1: !EmailHasLabel(E, L) ^2",
   "EmailHasLabel(E, +L) = 1.0 .",
+
+  # Entity Resolution
+  "1.0: LocalCoRef(E1, E2) = CoRef(E1, E2) ^2",
+  "1.0: SimCosineBow(E1, E2) -> CoRef(E1, E2) ^2",
+  "1.0: !SimCosineBow(E1, E2) -> !CoRef(E1, E2) ^2",
+  "0.1: !CoRef(E1, E2) ^2",
 
   # Link Prediction
   "1.0: LocalManages(E1, E2) = Manages(E1, E2) ^2",
@@ -37,13 +38,12 @@
 
   # Intra
   # ======================
+  # Node Labeling
+  "1.0: EmailHasLabel(E1, L) & SimEmailAddress(E1, E2) -> EmailHasLabel(E2, L) ^2",
 
   # Entity Resolution
   "1.0: CoRef(E1, E2) & !CoRef(E2, E3) & (E1 != E2) & (E2 != E3) & (E1 != E3) -> !CoRef(E1, E3) ^2",
   "1.0: CoRef(E1, E2) & CoRef(E2, E3) & (E1 != E2) & (E2 != E3) & (E1 != E3) -> CoRef(E1, E3) ^2",
-
-  # Node Labeling
-  "1.0: EmailHasLabel(E1, L) & SimEmailAddress(E1, E2) -> EmailHasLabel(E2, L) ^2",
 
   # Link Prediction
   "1.0: Manages(E1, E2) & Manages(E1, E3) & (E1 != E2) & (E2 != E3) & (E1 != E3) -> !Manages(E2, E3) ^2",
